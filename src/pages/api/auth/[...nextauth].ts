@@ -1,9 +1,9 @@
+import { fauna } from "../../../services/fauna";
 import { query as q } from "faunadb";
 
 import NextAuth from 'next-auth'
 import GithubProvider from 'next-auth/providers/github'
 
-import { fauna } from "../../../services/fauna";
 
 export default NextAuth({
   // configure one or more authentication providers
@@ -20,7 +20,7 @@ export default NextAuth({
     // ...add more providers here
   ],
   callbacks: {
-    async signIn({ user, account, profile }) {
+    async signIn({ user }) {
       const { email } = user;
 
       try {
@@ -47,7 +47,7 @@ export default NextAuth({
           )
         );
   
-        return true
+        return true;
       } catch {
         return false;
       }
