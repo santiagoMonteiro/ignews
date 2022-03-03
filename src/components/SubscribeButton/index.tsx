@@ -4,11 +4,11 @@ import { getStripeJs } from '../../services/stripe-js'
 import styles from './styles.module.scss'
 
 interface SubscribeButtonProps {
-  priceId: string
+  priceId: string;
 }
 
 export function SubscribeButton({ priceId }: SubscribeButtonProps) {
-  const { data: activeSession } = useSession()
+  const { data: activeSession } = useSession();
 
   async function handleSubscribe() {
     if (!activeSession) {
