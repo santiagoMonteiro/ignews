@@ -1,0 +1,17 @@
+{
+  "id": "sant",
+  "type": "SharedSlice",
+  "name": "Sant",
+  "description": "Sant",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "Sant",
+      "primary": {},
+      "items": {}
+    }
+  ]
+}

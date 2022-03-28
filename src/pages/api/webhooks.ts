@@ -14,12 +14,6 @@ async function buffer(readable: Readable) {
   return Buffer.concat(chunks);
 }
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-}
-
 const relevantEvents = new Set([
   "checkout.session.completed",
   "customer.subscription.updated",

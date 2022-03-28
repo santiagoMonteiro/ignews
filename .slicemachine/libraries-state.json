@@ -1,0 +1,100 @@
+{
+  "slices": {
+    "components": {
+      "content": {
+        "library": "slices",
+        "id": "content",
+        "name": "Content",
+        "description": "Content",
+        "model": {
+          "id": "content",
+          "type": "SharedSlice",
+          "name": "Content",
+          "description": "Content",
+          "variations": [
+            {
+              "id": "default",
+              "name": "Default",
+              "docURL": "...",
+              "version": "sktwi1xtmkfgx8626",
+              "description": "Content",
+              "primary": {
+                "description": {
+                  "type": "StructuredText",
+                  "config": {
+                    "label": "Description",
+                    "placeholder": "A nice description of your feature",
+                    "allowTargetBlank": true,
+                    "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+                  }
+                }
+              },
+              "items": {}
+            }
+          ]
+        },
+        "mocks": {
+          "default": {
+            "variation": "default",
+            "name": "Default",
+            "slice_type": "content",
+            "items": [],
+            "primary": {
+              "description": [
+                {
+                  "type": "paragraph",
+                  "text": "Nostrud incididunt aliqua eiusmod ea proident dolore fugiat et ea eu quis consequat Lorem commodo. Dolor sint tempor consequat.",
+                  "spans": []
+                }
+              ]
+            }
+          }
+        },
+        "meta": {
+          "fileName": "index",
+          "isDirectory": true,
+          "extension": "js"
+        },
+        "screenshotPaths": {}
+      },
+      "sant": {
+        "library": "slices",
+        "id": "sant",
+        "name": "Sant",
+        "description": "Sant",
+        "model": {
+          "id": "sant",
+          "type": "SharedSlice",
+          "name": "Sant",
+          "description": "Sant",
+          "variations": [
+            {
+              "id": "default",
+              "name": "Default",
+              "docURL": "...",
+              "version": "sktwi1xtmkfgx8626",
+              "description": "Sant",
+              "primary": {},
+              "items": {}
+            }
+          ]
+        },
+        "mocks": {
+          "default": {
+            "variation": "default",
+            "name": "Default",
+            "slice_type": "sant",
+            "items": [],
+            "primary": {}
+          }
+        },
+        "meta": {
+          "fileName": "index",
+          "isDirectory": true,
+          "extension": "js"
+        },
+        "screenshotPaths": {}
+      }
+    }
+  }
+}
