@@ -1,38 +1,41 @@
 import Head from "next/head"
-import { GetStaticProps } from "next";
+import Link from "next/link"
+import { GetStaticProps } from "next"
 
 import styles from "./styles.module.scss"
 
-import { createClient } from "../../../primicio";
-import { RichText } from "prismic-dom";
+import { createClient } from "../../../primicio"
+import { RichText } from "prismic-dom"
 
+type Post = {
+  slug: string
+  title: string
+  excerpt: string
+  updatedAt: string
+}
+interface PostsProps {
+  posts: Post[]
+}
 
-export default function Posts({ posts }) {
+export default function Posts({ posts }: PostsProps) {
+  console.log(posts);
   return (
     <>
       <Head>
         <title>Posts | ignews</title>
       </Head>
-      
+
       <main className={styles.container}>
         <div className={styles.posts}>
-          <a href="#">
-            <time>20/03/2022</time>
-            <strong>Você sabe o que é React?</strong>
-            <p>{posts}</p>
-          </a>
-          
-          <a href="#">
-            <time>20/03/2022</time>
-            <strong>Você sabe o que é React?</strong>
-            <p>Nesse artigo, você verá de forma simples o que é e para que serve o React</p>
-          </a>
-
-          <a href="#">
-            <time>20/03/2022</time>
-            <strong>Você sabe o que é React?</strong>
-            <p>Nesse artigo, você verá de forma simples o que é e para que serve o React</p>
-          </a>
+          {posts.map((post) => {
+            return (
+              <a key={post.slug} href="">
+                <time>{post.updatedAt}</time>
+                <strong>{post.title}</strong>
+                <p>{post.excerpt}</p>
+              </a>
+            )
+          })}
         </div>
       </main>
     </>
@@ -40,23 +43,31 @@ export default function Posts({ posts }) {
 }
 
 export const getStaticProps: GetStaticProps = async ({ previewData }) => {
-  const client = createClient({ previewData });
+  const client = createClient({ previewData })
 
-  // const page = await client.getByUID("page", "home");
   const response = await client.getAllByType("post", {
     fetch: ["title", "content"],
-    pageSize: 10,
-  });
+    pageSize: 100,
+  })
 
   const posts = response.map((post) => {
     return {
       slug: post.uid,
       title: RichText.asText(post.data.title),
-      excerpt: post.data.slices[0].primary.description.find(chunk => {
-        return (chunk.type === "paragraph" && chunk.text?.length > 0);
-      }),
-    };
-  });
+      excerpt:
+        post.data.slices[0].primary.description.find((chunk) => {
+          return chunk.type === "paragraph" && chunk.text?.length > 0
+        })?.text ?? "",
+      updatedAt: new Date(post.last_publication_date).toLocaleDateString(
+        "pt-BR",
+        {
+          day: "2-digit",
+          month: "long",
+          year: "numeric",
+        }
+      ),
+    }
+  })
 
   return {
     props: {
